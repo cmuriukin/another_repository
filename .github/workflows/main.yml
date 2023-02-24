@@ -1,16 +1,24 @@
-name: My Workflow
+name: SonarQube Scan
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  sonarqube:
+  sonarqube_scan:
     runs-on: ubuntu-latest
+
     steps:
-      - name: SonarQube Analysis
-        uses: cmuriukin/sonarqube-analysis-action@main
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run SonarQube Scan
+        uses: ./.github/actions/sonarqube
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
-          project-key: my-project
-          project-name: My Project
+          sonar-url: https://sonarqube.example.com
+          project-key: your-project-key
+          project-name: Your Project Name
           project-version: 1.0.0
-          sources: './src'
+          sources: ./
