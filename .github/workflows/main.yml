@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SonarQube Analysis
-        uses: my-org/sonarqube-analysis-action@v1
+        uses: cmuriukin/sonarqube-analysis-action@v1
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
           project-key: my-project
